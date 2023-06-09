@@ -1,0 +1,2504 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "SmartVistatAPI",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://mi-sit.phillipbank.com.kh/v1/sv",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/card-wallet/activate-card": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "activateCard",
+        "operationId": "activateCard",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/activateCardRequest"
+                  },
+                  {
+                    "example": {
+                      "card_number_mask": "5349139563989669",
+                      "phone_number": "85510252829",
+                      "customer_id": "303202323",
+                      "id_number": "222333"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "card_number_mask": "5349139563989669",
+                "phone_number": "85510252829",
+                "customer_id": "303202323",
+                "id_number": "222333"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/card-wallet/binding-card-to-account": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "bindingCardToAccount",
+        "operationId": "bindingCardToAccount",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/bindingCardToAccountRequest"
+                  },
+                  {
+                    "example": {
+                      "card_number_mask": "5495%4562",
+                      "phone_number": "85510223344",
+                      "customer_id": "887766",
+                      "id_number": "222333",
+                      "account_number": "700000167748",
+                      "account_type": "ACCOUNT_TYPE_SAVING"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "card_number_mask": "5495%4562",
+                "phone_number": "85510223344",
+                "customer_id": "887766",
+                "id_number": "222333",
+                "account_number": "700000167748",
+                "account_type": "ACCOUNT_TYPE_SAVING"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/card-wallet/change-card-limit": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "changeCardLimit",
+        "operationId": "changeCardLimit",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/changeCardLimitRequest"
+                  },
+                  {
+                    "example": {
+                      "card_number_mask": "5495%6898",
+                      "phone_number": "85510223344",
+                      "customer_id": "887766",
+                      "id_number": "222333",
+                      "name": "LMTC6222",
+                      "value": "100000"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "card_number_mask": "5495%6898",
+                "phone_number": "85510223344",
+                "customer_id": "887766",
+                "id_number": "222333",
+                "name": "LMTC6222",
+                "value": "100000"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/card-wallet/change-card-status": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "changeCardStatus",
+        "operationId": "changeCardStatus",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/changeCardStatusRequest"
+                  },
+                  {
+                    "example": {
+                      "card_number_mask": "53491395%2586",
+                      "phone_number": "85510252829",
+                      "customer_id": "303202312",
+                      "id_number": "222333",
+                      "hot_card_status": "1"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "card_number_mask": "53491395%2586",
+                "phone_number": "85510252829",
+                "customer_id": "303202312",
+                "id_number": "222333",
+                "hot_card_status": "1"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/card-wallet/create-virtual-card": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "createVirtualCard",
+        "operationId": "createVirtualCard",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/createVirtualCardRequest"
+                  },
+                  {
+                    "example": {
+                      "product_name": "PHILIPBANK",
+                      "parameters": [
+                        {
+                          "name": "customer_number",
+                          "value": "202304270019"
+                        },
+                        {
+                          "name": "product_id",
+                          "value": "60001120"
+                        },
+                        {
+                          "name": "card_type",
+                          "value": "1016"
+                        },
+                        {
+                          "name": "delivery_address",
+                          "value": "85510242428"
+                        },
+                        {
+                          "name": "account_number",
+                          "value": "202304270019"
+                        },
+                        {
+                          "name": "surname",
+                          "value": "Phillip"
+                        },
+                        {
+                          "name": "firstName",
+                          "value": "Virtual"
+                        },
+                        {
+                          "name": "id_type",
+                          "value": "IDTP0045"
+                        },
+                        {
+                          "name": "id_number",
+                          "value": "202304270019"
+                        },
+                        {
+                          "name": "commun_address",
+                          "value": "85510242428"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "product_name": "PHILIPBANK",
+                "parameters": [
+                  {
+                    "name": "customer_number",
+                    "value": "202304270019"
+                  },
+                  {
+                    "name": "product_id",
+                    "value": "60001120"
+                  },
+                  {
+                    "name": "card_type",
+                    "value": "1016"
+                  },
+                  {
+                    "name": "delivery_address",
+                    "value": "85510242428"
+                  },
+                  {
+                    "name": "account_number",
+                    "value": "202304270019"
+                  },
+                  {
+                    "name": "surname",
+                    "value": "Phillip"
+                  },
+                  {
+                    "name": "firstName",
+                    "value": "Virtual"
+                  },
+                  {
+                    "name": "id_type",
+                    "value": "IDTP0045"
+                  },
+                  {
+                    "name": "id_number",
+                    "value": "202304270019"
+                  },
+                  {
+                    "name": "commun_address",
+                    "value": "85510242428"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/card-wallet/generate-pin": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "generatePin",
+        "operationId": "generatePin",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/generatePinRequest"
+                  },
+                  {
+                    "example": {
+                      "card_number_mask": "5495%6898",
+                      "card_id": "100000273996",
+                      "phone_number": "85510223344",
+                      "customer_id": "887765",
+                      "id_number": "222333",
+                      "pin_delivery_method": "WS",
+                      "pin_value": "112233"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "card_number_mask": "5495%6898",
+                "card_id": "100000273996",
+                "phone_number": "85510223344",
+                "customer_id": "887765",
+                "id_number": "222333",
+                "pin_delivery_method": "WS",
+                "pin_value": "112233"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/card-wallet/get-card-data": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "getCardData",
+        "operationId": "getCardData",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/getCardDataRequest"
+                  },
+                  {
+                    "example": {
+                      "card_number_mask": "53491395%9034",
+                      "exp_date": "202806",
+                      "phone_number": "85510252829",
+                      "customer_id": "303202321",
+                      "id_number": "222333"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "card_number_mask": "53491395%9034",
+                "exp_date": "202806",
+                "phone_number": "85510252829",
+                "customer_id": "303202321",
+                "id_number": "222333"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/card-wallet/get-card-limits": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "getCardLimits",
+        "operationId": "getCardLimits",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/getCardLimitsRequest"
+                  },
+                  {
+                    "example": {
+                      "card_number_mask": "5349%6129",
+                      "phone_number": "85510223344",
+                      "customer_id": "111222",
+                      "id_number": "222333"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "card_number_mask": "5349%6129",
+                "phone_number": "85510223344",
+                "customer_id": "111222",
+                "id_number": "222333"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/card-wallet/get-card-list-by-owner": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "getCardListByOwner",
+        "operationId": "getCardListByOwner",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/getCardListByOwnerRequest"
+                  },
+                  {
+                    "example": {
+                      "phone_number": "85510252829",
+                      "customer_id": "303202317",
+                      "id_number": "222333"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "phone_number": "85510252829",
+                "customer_id": "303202317",
+                "id_number": "222333"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/card-wallet/get-geo-restrictions": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "getGeoRestrictions",
+        "operationId": "getGeoRestrictions",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/getGeoRestrictionsRequest"
+                  },
+                  {
+                    "example": {
+                      "card_number_mask": "4000%0001",
+                      "phone_number": "85510223344",
+                      "customer_id": "111222",
+                      "id_number": "222333"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "card_number_mask": "4000%0001",
+                "phone_number": "85510223344",
+                "customer_id": "111222",
+                "id_number": "222333"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/transaction/p2p-transfer": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "p2pTransfer",
+        "operationId": "p2pTransfer",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:40e27529-549f-44a5-9207-819c4e2d2852"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/p2pTransferRequest"
+                  },
+                  {
+                    "example": {
+                      "source_card_number_mask": "5495%6898",
+                      "source_phone_number": "85510223344",
+                      "source_customer_id": "887766",
+                      "source_id_number": "222333",
+                      "destination_card_number_mask": "5495%4562",
+                      "destination_phone_number": "85510334455",
+                      "destination_customer_id": "111222",
+                      "destination_id_number": "222333",
+                      "amount": "500",
+                      "currency": "840"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "source_card_number_mask": "5495%6898",
+                "source_phone_number": "85510223344",
+                "source_customer_id": "887766",
+                "source_id_number": "222333",
+                "destination_card_number_mask": "5495%4562",
+                "destination_phone_number": "85510334455",
+                "destination_customer_id": "111222",
+                "destination_id_number": "222333",
+                "amount": "500",
+                "currency": "840"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/card-wallet/set-geo-restrictions": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "setGeoRestrictions",
+        "operationId": "setGeoRestrictions",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/setGeoRestrictionsRequest"
+                  },
+                  {
+                    "example": {
+                      "card_number_mask": "5495%4562",
+                      "phone_number": "85510234490",
+                      "customer_id": "887766",
+                      "id_number": "555666",
+                      "restriction": [
+                        {
+                          "region_id": "5",
+                          "transaction_group_id": "999",
+                          "status": "DISABLED",
+                          "start_date": "2021-05-01T00:00:00",
+                          "end_date": "2021-05-09T23:59:59"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "card_number_mask": "5495%4562",
+                "phone_number": "85510234490",
+                "customer_id": "887766",
+                "id_number": "555666",
+                "restriction": [
+                  {
+                    "region_id": "5",
+                    "transaction_group_id": "999",
+                    "status": "DISABLED",
+                    "start_date": "2021-05-01T00:00:00",
+                    "end_date": "2021-05-09T23:59:59"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/card-wallet/validate-pin": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "validatePin",
+        "operationId": "validatePin",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/validatePinRequest"
+                  },
+                  {
+                    "example": {
+                      "card_number_mask": "9116%3712",
+                      "pin_value": "112233",
+                      "phone_number": "85510223344",
+                      "customer_id": "111222",
+                      "id_number": "222333"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "card_number_mask": "9116%3712",
+                "pin_value": "112233",
+                "phone_number": "85510223344",
+                "customer_id": "111222",
+                "id_number": "222333"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/card-wallet/send-issuer-application": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "sendIssuerApplication",
+        "operationId": "sendIssuerApplication",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/sendIssuerApplicationRequest"
+                  },
+                  {
+                    "example": {
+                      "agent_id": "60000106",
+                      "customer": {
+                        "customer_number": "303202323",
+                        "customer_category": "CCTG6017",
+                        "contract": {
+                          "product_id": "60001144",
+                          "card": {
+                            "card_type": "6151",
+                            "delivery_address": "85510242428"
+                          },
+                          "account": {
+                            "account_number": "800000182623",
+                            "currency": "840",
+                            "account_type": "ACTP6605"
+                          }
+                        },
+                        "person": {
+                          "person_title": "PTTLMSTR",
+                          "surname": "PHILLIP",
+                          "first_name": "PREPAID003",
+                          "id_type": "IDTP0045",
+                          "id_number": "303202323"
+                        },
+                        "contact": {
+                          "preferred_lang": "LANGENG",
+                          "commun_method": "CMNM0001",
+                          "commun_address": "85510252829"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "agent_id": "60000106",
+                "customer": {
+                  "customer_number": "303202323",
+                  "customer_category": "CCTG6017",
+                  "contract": {
+                    "product_id": "60001144",
+                    "card": {
+                      "card_type": "6151",
+                      "delivery_address": "85510242428"
+                    },
+                    "account": {
+                      "account_number": "800000182623",
+                      "currency": "840",
+                      "account_type": "ACTP6605"
+                    }
+                  },
+                  "person": {
+                    "person_title": "PTTLMSTR",
+                    "surname": "PHILLIP",
+                    "first_name": "PREPAID003",
+                    "id_type": "IDTP0045",
+                    "id_number": "303202323"
+                  },
+                  "contact": {
+                    "preferred_lang": "LANGENG",
+                    "commun_method": "CMNM0001",
+                    "commun_address": "85510252829"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/card-wallet/block-card": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "blockCard",
+        "operationId": "blockCard",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/blockCardRequest"
+                  },
+                  {
+                    "example": {
+                      "card_number_mask": "53491395%2586",
+                      "phone_number": "85510252829",
+                      "customer_id": "303202312",
+                      "id_number": "222333",
+                      "hot_card_status": "2"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "card_number_mask": "53491395%2586",
+                "phone_number": "85510252829",
+                "customer_id": "303202312",
+                "id_number": "222333",
+                "hot_card_status": "2"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/card-wallet/init-cardless-cashout": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "initCardlessCashout",
+        "operationId": "initCardlessCashout",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/initCardlessCashoutRequest"
+                  },
+                  {
+                    "example": {
+                      "phone_number": "85510223344",
+                      "customer_id": "111222",
+                      "id_number": "222333",
+                      "amount": "2000",
+                      "currency": "840",
+                      "account_type": "ACCOUNT_TYPE_SAVING",
+                      "account_number": "202302230201",
+                      "unique_reference_number": "80003190",
+                      "action_code": "1"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "phone_number": "85510223344",
+                "customer_id": "111222",
+                "id_number": "222333",
+                "amount": "2000",
+                "currency": "840",
+                "account_type": "ACCOUNT_TYPE_SAVING",
+                "account_number": "202302230201",
+                "unique_reference_number": "80003190",
+                "action_code": "1"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/transaction/get-transaction": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "getTransactions",
+        "operationId": "getTransactions",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/getTransactionsRequest"
+                  },
+                  {
+                    "example": {
+                      "card_number_mask": "5495%4562",
+                      "exp_date": "202802",
+                      "phone_number": "85510223344",
+                      "customer_id": "111222",
+                      "id_number": "222333",
+                      "start": "2023-05-02",
+                      "end": "2023-05-02"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "card_number_mask": "5495%4562",
+                "exp_date": "202802",
+                "phone_number": "85510223344",
+                "customer_id": "111222",
+                "id_number": "222333",
+                "start": "2023-05-02",
+                "end": "2023-05-02"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/transaction/p2p-debit": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "p2pDebit",
+        "operationId": "p2pDebit",
+        "parameters": [
+          {
+            "name": "correlation_id",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "urn:uuid:b4496d89-0727-43fe-9c2c-3023bfaccda2"
+            }
+          },
+          {
+            "name": "App-Code",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "MB"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/p2pDebitRequest"
+                  },
+                  {
+                    "example": {
+                      "card_number_mask": "5349%7087",
+                      "amount": "13390",
+                      "currency": "840",
+                      "account_umber": "700000167748",
+                      "sender_name": "VICHKA",
+                      "sender_address": "168",
+                      "phone_number": "85510234490",
+                      "customer_id": "111222",
+                      "id_number": "222333"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "card_number_mask": "5349%7087",
+                "amount": "13390",
+                "currency": "840",
+                "account_umber": "700000167748",
+                "sender_name": "VICHKA",
+                "sender_address": "168",
+                "phone_number": "85510234490",
+                "customer_id": "111222",
+                "id_number": "222333"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "activateCardRequest": {
+        "title": "activateCardRequest",
+        "required": [
+          "card_number_mask",
+          "phone_number",
+          "customer_id",
+          "id_number"
+        ],
+        "type": "object",
+        "properties": {
+          "card_number_mask": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "id_number": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "card_number_mask": "5349139563989669",
+          "phone_number": "85510252829",
+          "customer_id": "303202323",
+          "id_number": "222333"
+        }
+      },
+      "bindingCardToAccountRequest": {
+        "title": "bindingCardToAccountRequest",
+        "required": [
+          "card_number_mask",
+          "phone_number",
+          "customer_id",
+          "id_number",
+          "account_number",
+          "account_type"
+        ],
+        "type": "object",
+        "properties": {
+          "card_number_mask": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "id_number": {
+            "type": "string"
+          },
+          "account_number": {
+            "type": "string"
+          },
+          "account_type": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "card_number_mask": "5495%4562",
+          "phone_number": "85510223344",
+          "customer_id": "887766",
+          "id_number": "222333",
+          "account_number": "700000167748",
+          "account_type": "ACCOUNT_TYPE_SAVING"
+        }
+      },
+      "changeCardLimitRequest": {
+        "title": "changeCardLimitRequest",
+        "required": [
+          "card_number_mask",
+          "phone_number",
+          "customer_id",
+          "id_number",
+          "name",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "card_number_mask": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "id_number": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "card_number_mask": "5495%6898",
+          "phone_number": "85510223344",
+          "customer_id": "887766",
+          "id_number": "222333",
+          "name": "LMTC6222",
+          "value": "100000"
+        }
+      },
+      "changeCardStatusRequest": {
+        "title": "changeCardStatusRequest",
+        "required": [
+          "card_number_mask",
+          "phone_number",
+          "customer_id",
+          "id_number",
+          "hot_card_status"
+        ],
+        "type": "object",
+        "properties": {
+          "card_number_mask": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "id_number": {
+            "type": "string"
+          },
+          "hot_card_status": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "card_number_mask": "53491395%2586",
+          "phone_number": "85510252829",
+          "customer_id": "303202312",
+          "id_number": "222333",
+          "hot_card_status": "1"
+        }
+      },
+      "createVirtualCardRequest": {
+        "title": "createVirtualCardRequest",
+        "required": [
+          "product_name",
+          "parameters"
+        ],
+        "type": "object",
+        "properties": {
+          "product_name": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "product_name": "PHILIPBANK",
+          "parameters": [
+            {
+              "name": "customer_number",
+              "value": "202304270019"
+            },
+            {
+              "name": "product_id",
+              "value": "60001120"
+            },
+            {
+              "name": "card_type",
+              "value": "1016"
+            },
+            {
+              "name": "delivery_address",
+              "value": "85510242428"
+            },
+            {
+              "name": "account_number",
+              "value": "202304270019"
+            },
+            {
+              "name": "surname",
+              "value": "Phillip"
+            },
+            {
+              "name": "firstName",
+              "value": "Virtual"
+            },
+            {
+              "name": "id_type",
+              "value": "IDTP0045"
+            },
+            {
+              "name": "id_number",
+              "value": "202304270019"
+            },
+            {
+              "name": "commun_address",
+              "value": "85510242428"
+            }
+          ]
+        }
+      },
+      "Parameter": {
+        "title": "Parameter",
+        "required": [
+          "name",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "customer_number",
+          "value": "202304270019"
+        }
+      },
+      "generatePinRequest": {
+        "title": "generatePinRequest",
+        "required": [
+          "card_number_mask",
+          "card_id",
+          "phone_number",
+          "customer_id",
+          "id_number",
+          "pin_delivery_method",
+          "pin_value"
+        ],
+        "type": "object",
+        "properties": {
+          "card_number_mask": {
+            "type": "string"
+          },
+          "card_id": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "id_number": {
+            "type": "string"
+          },
+          "pin_delivery_method": {
+            "type": "string"
+          },
+          "pin_value": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "card_number_mask": "5495%6898",
+          "card_id": "100000273996",
+          "phone_number": "85510223344",
+          "customer_id": "887765",
+          "id_number": "222333",
+          "pin_delivery_method": "WS",
+          "pin_value": "112233"
+        }
+      },
+      "getCardDataRequest": {
+        "title": "getCardDataRequest",
+        "required": [
+          "card_number_mask",
+          "exp_date",
+          "phone_number",
+          "customer_id",
+          "id_number"
+        ],
+        "type": "object",
+        "properties": {
+          "card_number_mask": {
+            "type": "string"
+          },
+          "exp_date": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "id_number": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "card_number_mask": "53491395%9034",
+          "exp_date": "202806",
+          "phone_number": "85510252829",
+          "customer_id": "303202321",
+          "id_number": "222333"
+        }
+      },
+      "getCardLimitsRequest": {
+        "title": "getCardLimitsRequest",
+        "required": [
+          "card_number_mask",
+          "phone_number",
+          "customer_id",
+          "id_number"
+        ],
+        "type": "object",
+        "properties": {
+          "card_number_mask": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "id_number": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "card_number_mask": "5349%6129",
+          "phone_number": "85510223344",
+          "customer_id": "111222",
+          "id_number": "222333"
+        }
+      },
+      "getCardListByOwnerRequest": {
+        "title": "getCardListByOwnerRequest",
+        "required": [
+          "phone_number",
+          "customer_id",
+          "id_number"
+        ],
+        "type": "object",
+        "properties": {
+          "phone_number": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "id_number": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "phone_number": "85510252829",
+          "customer_id": "303202317",
+          "id_number": "222333"
+        }
+      },
+      "getGeoRestrictionsRequest": {
+        "title": "getGeoRestrictionsRequest",
+        "required": [
+          "card_number_mask",
+          "phone_number",
+          "customer_id",
+          "id_number"
+        ],
+        "type": "object",
+        "properties": {
+          "card_number_mask": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "id_number": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "card_number_mask": "4000%0001",
+          "phone_number": "85510223344",
+          "customer_id": "111222",
+          "id_number": "222333"
+        }
+      },
+      "p2pTransferRequest": {
+        "title": "p2pTransferRequest",
+        "required": [
+          "source_card_number_mask",
+          "source_phone_number",
+          "source_customer_id",
+          "source_id_number",
+          "destination_card_number_mask",
+          "destination_phone_number",
+          "destination_customer_id",
+          "destination_id_number",
+          "amount",
+          "currency"
+        ],
+        "type": "object",
+        "properties": {
+          "source_card_number_mask": {
+            "type": "string"
+          },
+          "source_phone_number": {
+            "type": "string"
+          },
+          "source_customer_id": {
+            "type": "string"
+          },
+          "source_id_number": {
+            "type": "string"
+          },
+          "destination_card_number_mask": {
+            "type": "string"
+          },
+          "destination_phone_number": {
+            "type": "string"
+          },
+          "destination_customer_id": {
+            "type": "string"
+          },
+          "destination_id_number": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "source_card_number_mask": "5495%6898",
+          "source_phone_number": "85510223344",
+          "source_customer_id": "887766",
+          "source_id_number": "222333",
+          "destination_card_number_mask": "5495%4562",
+          "destination_phone_number": "85510334455",
+          "destination_customer_id": "111222",
+          "destination_id_number": "222333",
+          "amount": "500",
+          "currency": "840"
+        }
+      },
+      "setGeoRestrictionsRequest": {
+        "title": "setGeoRestrictionsRequest",
+        "required": [
+          "card_number_mask",
+          "phone_number",
+          "customer_id",
+          "id_number",
+          "restriction"
+        ],
+        "type": "object",
+        "properties": {
+          "card_number_mask": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "id_number": {
+            "type": "string"
+          },
+          "restriction": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Restriction"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "card_number_mask": "5495%4562",
+          "phone_number": "85510234490",
+          "customer_id": "887766",
+          "id_number": "555666",
+          "restriction": [
+            {
+              "region_id": "5",
+              "transaction_group_id": "999",
+              "status": "DISABLED",
+              "start_date": "2021-05-01T00:00:00",
+              "end_date": "2021-05-09T23:59:59"
+            }
+          ]
+        }
+      },
+      "Restriction": {
+        "title": "Restriction",
+        "required": [
+          "region_id",
+          "transaction_group_id",
+          "status",
+          "start_date",
+          "end_date"
+        ],
+        "type": "object",
+        "properties": {
+          "region_id": {
+            "type": "string"
+          },
+          "transaction_group_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "start_date": {
+            "type": "string"
+          },
+          "end_date": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "region_id": "5",
+          "transaction_group_id": "999",
+          "status": "DISABLED",
+          "start_date": "2021-05-01T00:00:00",
+          "end_date": "2021-05-09T23:59:59"
+        }
+      },
+      "validatePinRequest": {
+        "title": "validatePinRequest",
+        "required": [
+          "card_number_mask",
+          "pin_value",
+          "phone_number",
+          "customer_id",
+          "id_number"
+        ],
+        "type": "object",
+        "properties": {
+          "card_number_mask": {
+            "type": "string"
+          },
+          "pin_value": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "id_number": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "card_number_mask": "9116%3712",
+          "pin_value": "112233",
+          "phone_number": "85510223344",
+          "customer_id": "111222",
+          "id_number": "222333"
+        }
+      },
+      "sendIssuerApplicationRequest": {
+        "title": "sendIssuerApplicationRequest",
+        "required": [
+          "agent_id",
+          "customer"
+        ],
+        "type": "object",
+        "properties": {
+          "agent_id": {
+            "type": "string"
+          },
+          "customer": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Customer"
+              },
+              {}
+            ]
+          }
+        },
+        "example": {
+          "agent_id": "60000106",
+          "customer": {
+            "customer_number": "303202323",
+            "customer_category": "CCTG6017",
+            "contract": {
+              "product_id": "60001144",
+              "card": {
+                "card_type": "6151",
+                "delivery_address": "85510242428"
+              },
+              "account": {
+                "account_number": "800000182623",
+                "currency": "840",
+                "account_type": "ACTP6605"
+              }
+            },
+            "person": {
+              "person_title": "PTTLMSTR",
+              "surname": "PHILLIP",
+              "first_name": "PREPAID003",
+              "id_type": "IDTP0045",
+              "id_number": "303202323"
+            },
+            "contact": {
+              "preferred_lang": "LANGENG",
+              "commun_method": "CMNM0001",
+              "commun_address": "85510252829"
+            }
+          }
+        }
+      },
+      "Customer": {
+        "title": "Customer",
+        "required": [
+          "customer_number",
+          "customer_category",
+          "contract",
+          "person",
+          "contact"
+        ],
+        "type": "object",
+        "properties": {
+          "customer_number": {
+            "type": "string"
+          },
+          "customer_category": {
+            "type": "string"
+          },
+          "contract": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Contract"
+              },
+              {}
+            ]
+          },
+          "person": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Person"
+              },
+              {}
+            ]
+          },
+          "contact": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Contact"
+              },
+              {}
+            ]
+          }
+        },
+        "example": {
+          "customer_number": "303202323",
+          "customer_category": "CCTG6017",
+          "contract": {
+            "product_id": "60001144",
+            "card": {
+              "card_type": "6151",
+              "delivery_address": "85510242428"
+            },
+            "account": {
+              "account_number": "800000182623",
+              "currency": "840",
+              "account_type": "ACTP6605"
+            }
+          },
+          "person": {
+            "person_title": "PTTLMSTR",
+            "surname": "PHILLIP",
+            "first_name": "PREPAID003",
+            "id_type": "IDTP0045",
+            "id_number": "303202323"
+          },
+          "contact": {
+            "preferred_lang": "LANGENG",
+            "commun_method": "CMNM0001",
+            "commun_address": "85510252829"
+          }
+        }
+      },
+      "Contract": {
+        "title": "Contract",
+        "required": [
+          "product_id",
+          "card",
+          "account"
+        ],
+        "type": "object",
+        "properties": {
+          "product_id": {
+            "type": "string"
+          },
+          "card": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Card"
+              },
+              {}
+            ]
+          },
+          "account": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Account"
+              },
+              {}
+            ]
+          }
+        },
+        "example": {
+          "product_id": "60001144",
+          "card": {
+            "card_type": "6151",
+            "delivery_address": "85510242428"
+          },
+          "account": {
+            "account_number": "800000182623",
+            "currency": "840",
+            "account_type": "ACTP6605"
+          }
+        }
+      },
+      "Card": {
+        "title": "Card",
+        "required": [
+          "card_type",
+          "delivery_address"
+        ],
+        "type": "object",
+        "properties": {
+          "card_type": {
+            "type": "string"
+          },
+          "delivery_address": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "card_type": "6151",
+          "delivery_address": "85510242428"
+        }
+      },
+      "Account": {
+        "title": "Account",
+        "required": [
+          "account_number",
+          "currency",
+          "account_type"
+        ],
+        "type": "object",
+        "properties": {
+          "account_number": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "account_type": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "account_number": "800000182623",
+          "currency": "840",
+          "account_type": "ACTP6605"
+        }
+      },
+      "Person": {
+        "title": "Person",
+        "required": [
+          "person_title",
+          "surname",
+          "first_name",
+          "id_type",
+          "id_number"
+        ],
+        "type": "object",
+        "properties": {
+          "person_title": {
+            "type": "string"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "id_type": {
+            "type": "string"
+          },
+          "id_number": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "person_title": "PTTLMSTR",
+          "surname": "PHILLIP",
+          "first_name": "PREPAID003",
+          "id_type": "IDTP0045",
+          "id_number": "303202323"
+        }
+      },
+      "Contact": {
+        "title": "Contact",
+        "required": [
+          "preferred_lang",
+          "commun_method",
+          "commun_address"
+        ],
+        "type": "object",
+        "properties": {
+          "preferred_lang": {
+            "type": "string"
+          },
+          "commun_method": {
+            "type": "string"
+          },
+          "commun_address": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "preferred_lang": "LANGENG",
+          "commun_method": "CMNM0001",
+          "commun_address": "85510252829"
+        }
+      },
+      "blockCardRequest": {
+        "title": "blockCardRequest",
+        "required": [
+          "card_number_mask",
+          "phone_number",
+          "customer_id",
+          "id_number",
+          "hot_card_status"
+        ],
+        "type": "object",
+        "properties": {
+          "card_number_mask": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "id_number": {
+            "type": "string"
+          },
+          "hot_card_status": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "card_number_mask": "53491395%2586",
+          "phone_number": "85510252829",
+          "customer_id": "303202312",
+          "id_number": "222333",
+          "hot_card_status": "2"
+        }
+      },
+      "initCardlessCashoutRequest": {
+        "title": "initCardlessCashoutRequest",
+        "required": [
+          "phone_number",
+          "customer_id",
+          "id_number",
+          "amount",
+          "currency",
+          "account_type",
+          "account_number",
+          "unique_reference_number",
+          "action_code"
+        ],
+        "type": "object",
+        "properties": {
+          "phone_number": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "id_number": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "account_type": {
+            "type": "string"
+          },
+          "account_number": {
+            "type": "string"
+          },
+          "unique_reference_number": {
+            "type": "string"
+          },
+          "action_code": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "phone_number": "85510223344",
+          "customer_id": "111222",
+          "id_number": "222333",
+          "amount": "2000",
+          "currency": "840",
+          "account_type": "ACCOUNT_TYPE_SAVING",
+          "account_number": "202302230201",
+          "unique_reference_number": "80003190",
+          "action_code": "1"
+        }
+      },
+      "getTransactionsRequest": {
+        "title": "getTransactionsRequest",
+        "required": [
+          "card_number_mask",
+          "exp_date",
+          "phone_number",
+          "customer_id",
+          "id_number",
+          "start",
+          "end"
+        ],
+        "type": "object",
+        "properties": {
+          "card_number_mask": {
+            "type": "string"
+          },
+          "exp_date": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "id_number": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string"
+          },
+          "end": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "card_number_mask": "5495%4562",
+          "exp_date": "202802",
+          "phone_number": "85510223344",
+          "customer_id": "111222",
+          "id_number": "222333",
+          "start": "2023-05-02",
+          "end": "2023-05-02"
+        }
+      },
+      "p2pDebitRequest": {
+        "title": "p2pDebitRequest",
+        "required": [
+          "card_number_mask",
+          "amount",
+          "currency",
+          "account_umber",
+          "sender_name",
+          "sender_address",
+          "phone_number",
+          "customer_id",
+          "id_number"
+        ],
+        "type": "object",
+        "properties": {
+          "card_number_mask": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "account_umber": {
+            "type": "string"
+          },
+          "sender_name": {
+            "type": "string"
+          },
+          "sender_address": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "id_number": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "card_number_mask": "5349%7087",
+          "amount": "13390",
+          "currency": "840",
+          "account_umber": "700000167748",
+          "sender_name": "VICHKA",
+          "sender_address": "168",
+          "phone_number": "85510234490",
+          "customer_id": "111222",
+          "id_number": "222333"
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ]
+}
