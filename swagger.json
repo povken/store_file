@@ -9,6 +9,10 @@
     {
       "url": "http://mi-sit.phillipbank.com.kh/v1/sv",
       "variables": {}
+    },
+    {
+      "url": "http://localhost:8290/v1/sv",
+      "variables": {}
     }
   ],
   "paths": {
