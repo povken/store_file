@@ -7,8 +7,10 @@ servers:
 components:
   securitySchemes:
     oauth2Auth:
-      type: http
-      scheme: oauth2
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://apicp-uat.phillipbank.com.kh/oauth2/token
 paths:
   /sv/v1/transaction/p2p-credit:
     post:
