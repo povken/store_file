@@ -1,390 +1,892 @@
 openapi: 3.0.0
 info:
-  description: This is a sample server Petstore server. You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/). For this sample, you can use the api key `special-key` to test the authorization filters.
-  version: 1.0.6
-  title: Swagger Petstore
-  termsOfService: http://swagger.io/terms/
-  contact:
-    email: apiteam@swagger.io
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Test-SV-API
+  version: 1.0.0
 servers:
-  - url: https://petstore.swagger.io/v2
-tags:
-  - name: pet
-    description: Everything about your Pets
-    externalDocs:
-      description: Find out more
-      url: http://swagger.io
-  - name: store
-    description: Access to Petstore orders
-  - name: user
-    description: Operations about user
-    externalDocs:
-      description: Find out more about our store
-      url: http://swagger.io
+  - url: https://mi-uat.phillipbank.com.kh/v1/sv
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
 paths:
-  /pet/{petId}/uploadImage:
+  /v1/sv/card-wallet/send-issuer-application:
     post:
       tags:
-        - pet
-      summary: Uploads an image
-      operationId: uploadFile
+        - default
+      summary: "1.\tRequest Debit/Prepaid Card - sendIssuerApplication Copy"
       requestBody:
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
-              properties:
-                petId:
-                  description: ID of pet to update
-                  type: integer
-                  format: int64
-                additionalMetadata:
-                  description: Additional data to pass to server
-                  type: string
-                file:
-                  description: File to upload
-                  type: string
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiResponse'
+              example:
+                agent_id: '60000106'
+                customer:
+                  customer_number: '313202321'
+                  customer_category: CCTG6017
+                  customer_type: New
+                  contract:
+                    product_id: '60001144'
+                    card:
+                      card_type: '6151'
+                      delivery_address: '85510242428'
+                      contact:
+                        preferred_lang: LANGENG
+                        commun_method: CMNM0001
+                        commun_address: '85510252829'
+                    account:
+                      account_number: '81000018221'
+                      currency: '840'
+                      account_type: ACTP6605
+                  person:
+                    person_title: PTTLMSTR
+                    surname: PHILLIP
+                    first_name: PREPAID003
+                    id_type: IDTP0045
+                    id_number: '313202321'
       security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-  /pet:
-    post:
-      tags:
-        - pet
-      summary: Add a new pet to the store
-      operationId: addPet
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Pet'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Pet'
-      responses:
-        '405':
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-    put:
-      tags:
-        - pet
-      summary: Update an existing pet
-      operationId: updatePet
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Pet'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Pet'
-      responses:
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Pet not found
-        '405':
-          description: Validation exception
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-  /pet/findByStatus:
-    get:
-      tags:
-        - pet
-      summary: Finds Pets by status
-      operationId: findPetsByStatus
+        - noauthAuth: []
       parameters:
-        - name: status
-          in: query
-          description: Status values that need to be considered for filter
-          required: true
-          style: form
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-            default: available
-          collectionFormat: multi
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
-        '400':
-          description: Invalid status value
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-  /pet/findByTags:
-    get:
-      tags:
-        - pet
-      summary: Finds Pets by tags
-      operationId: findPetsByTags
-      parameters:
-        - name: tags
-          in: query
-          description: Tags to filter by
-          required: true
-          style: form
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-          collectionFormat: multi
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
-        '400':
-          description: Invalid tag value
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-      deprecated: true
-  /pet/{petId}:
-    get:
-      tags:
-        - pet
-      summary: Find pet by ID
-      operationId: getPetById
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet to return
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Pet'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Pet not found
-      security:
-        - api_key: []
-    post:
-      tags:
-        - pet
-      summary: Updates a pet in the store with form data
-      operationId: updatePetWithForm
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet that needs to be updated
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: name
-          in: formData
-          description: Updated name of the pet
-          required: false
-          schema:
-            type: string
-        - name: status
-          in: formData
-          description: Updated status of the pet
-          required: false
-          schema:
-            type: string
-      responses:
-        '405':
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-  /pet:
-    delete:
-      tags:
-        - pet
-      summary: Deletes a pet
-      operationId: deletePet
-      parameters:
-        - name: api_key
+        - name: Content-Type
           in: header
-          required: false
           schema:
             type: string
-        - name: petId
-          in: path
-          description: Pet id to delete
-          required: true
+          example: application/json
+        - name: App-Code
+          in: header
           schema:
-            type: integer
-            format: int64
+            type: string
+          example: MB
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
       responses:
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Pet not found
-      security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
-  /store/order:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/send-issuer-application-add-card:
     post:
       tags:
-        - store
-      summary: Place an order for a pet
-      operationId: placeOrder
+        - default
+      summary: "1.\tAdd Debit/Prepaid Card - sendIssuerApplicationAddCard Copy"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Order'
+              type: object
+              example:
+                agent_id: '60000106'
+                customer:
+                  customer_number: '313202303'
+                  customer_category: CCTG6017
+                  contract:
+                    product_id: '60001055'
+                    contract_number: '00000000000000000000000000227611'
+                    card:
+                      card_type: '1006'
+                      delivery_address: '85510242428'
+                      cardholder_name: PHILLIP PREPAID08001
+                      contact:
+                        preferred_lang: LANGENG
+                        commun_method: CMNM0001
+                        commun_address: '85510252829'
+                    account:
+                      account_number: '81000018203'
+                      currency: '840'
+                      account_type: ACTP0110
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
       responses:
         '200':
-          description: Successful operation
+          description: Successful response
           content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Order'
-        '400':
-          description: Invalid Order
-components:
-  schemas:
-    ApiResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        type:
-          type: string
-        message:
-          type: string
-    Category:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-    Pet:
-      type: object
-      required:
-        - name
-        - photoUrls
-      properties:
-        id:
-          type: integer
-          format: int64
-        category:
-          $ref: '#/components/schemas/Category'
-        name:
-          type: string
-          example: doggie
-        photoUrls:
-          type: array
-          items:
+            application/json: {}
+  /v1/sv/card-wallet/activate-card:
+    post:
+      tags:
+        - default
+      summary: "2.\tActivate Card - activateCard Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000302231'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
             type: string
-          xml:
-            wrapped: true
-        tags:
-          type: array
-          items:
-            xml:
-              name: tag
-          $ref: '#/components/schemas/Tag'
-        status:
-          type: string
-          description: pet status in the store
-          enum:
-            - available
-            - pending
-            - sold
-    Tag:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-    Order:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        petId:
-          type: integer
-          format: int64
-        quantity:
-          type: integer
-          format: int32
-        shipDate:
-          type: string
-          format: date-time
-        status:
-          type: string
-          description: Order Status
-          enum:
-            - placed
-            - approved
-            - delivered
-        complete:
-          type: boolean
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        username:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        password:
-          type: string
-        phone:
-          type: string
-        userStatus:
-          type: integer
-          format: int32
-          description: User Status
-externalDocs:
-  description: Find out more about Swagger
-  url: http://swagger.io
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/generate-pin:
+    post:
+      tags:
+        - default
+      summary: "5.\tChange Card PIN - generatePin Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000273996'
+                pin_delivery_method: WS
+                pin_value: '112233'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/block-card:
+    post:
+      tags:
+        - default
+      summary: "7.\tBlock/Unblock - blockCard Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000297025'
+                hot_card_status: '2'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/change-card-status:
+    post:
+      tags:
+        - default
+      summary: "7.\tBlock/Unblock - changeCardStatus Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000297025'
+                hot_card_status: '0'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/transaction/p2p-transfer:
+    post:
+      tags:
+        - default
+      summary: "8.\tWallet Transfer from Wallet to Wallet - p2pTransfer Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                source_card_id: '100000293029'
+                destination_card_number: '5349139572257702'
+                amount: '500'
+                currency: '840'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/transaction/p2p-debit:
+    post:
+      tags:
+        - default
+      summary: "9.\tTransfer from Prepaid to CASA - p2pDebit Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000240457'
+                amount: '10'
+                currency: '840'
+                account_number: '700000167748'
+                sender_name: VICHKA
+                sender_address: '168'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/create-virtual-card:
+    post:
+      tags:
+        - default
+      summary: "10.\tCreate Virtual Card - createVirtualCard Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                product_name: PHILIPBANK1
+                parameters:
+                  - name: application_type
+                    value: '1001'
+                  - name: customer_number
+                    value: '313202301'
+                  - name: product_id
+                    value: '60001120'
+                  - name: card_type
+                    value: '1016'
+                  - name: cardholder_name
+                    value: PHILLIP Virtua15001
+                  - name: delivery_address
+                    value: '85510242428'
+                  - name: commun_address
+                    value: '85510252829'
+                  - name: account_number
+                    value: '81000018201'
+                  - name: currency
+                    value: '840'
+                  - name: account_type
+                    value: ACTP0110
+                  - name: surname
+                    value: PHILLIP
+                  - name: firstName
+                    value: Virtua15001
+                  - name: id_type
+                    value: IDTP0045
+                  - name: id_number
+                    value: '313202301'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/add-virtual-card:
+    post:
+      tags:
+        - default
+      summary: "10.\tAdd Virtual Card - addVirtualCard Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                product_name: PHILIPBANK1
+                parameters:
+                  - name: application_type
+                    value: '1003'
+                  - name: customer_number
+                    value: '303202379'
+                  - name: product_id
+                    value: '60001120'
+                  - name: contract_number
+                    value: '00000000000000000000000000224144'
+                  - name: card_type
+                    value: '1016'
+                  - name: cardholder_name
+                    value: PHILLIP Virtua09001
+                  - name: delivery_address
+                    value: '85510242428'
+                  - name: commun_address
+                    value: '85510252829'
+                  - name: account_number
+                    value: '80000018279'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/change-card-limit:
+    post:
+      tags:
+        - default
+      summary: "11.\tChange Card Limit - changeCardLimit Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000297025'
+                name: LMTC6222
+                value: '1000'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/get-geo-restrictions:
+    post:
+      tags:
+        - default
+      summary: "12.\tEnable/Disable Card Service - getGeoRestrictions Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000273996'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/set-geo-restrictions:
+    post:
+      tags:
+        - default
+      summary: "12.\tEnable/Disable Card Service - setGeoRestrictions Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000273996'
+                restriction:
+                  - region_id: '5'
+                    transaction_group_id: '999'
+                    status: DISABLED
+                    start_date: '2021-05-01T00:00:00'
+                    end_date: '2021-05-09T23:59:59'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/init-cardless-cashout:
+    post:
+      tags:
+        - default
+      summary: "13.\tE_Cash - initCardlessCashout Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                customer_id: '303202385'
+                amount: '200'
+                currency: '840'
+                account_type: ACCOUNT_TYPE_SAVING
+                account_number: '800000182621'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/transaction/get-transaction:
+    post:
+      tags:
+        - default
+      summary: "14.\tView Transaction History - getTransactions Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000296691'
+                exp_date: '202806'
+                start: '2021-01-01'
+                end: '2023-06-26'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/generate-cvc2:
+    post:
+      tags:
+        - default
+      summary: "16.\tGet CVV - generateCVC2 Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000297025'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/binding-card-to-account:
+    post:
+      tags:
+        - default
+      summary: "17.\tBind Card/ Link Account - bindingCardToAccount Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000297025'
+                account_number: '80000018285'
+                account_type: ACCOUNT_TYPE_SAVING
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/get-card-data:
+    post:
+      tags:
+        - default
+      summary: getCardData Copy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000302231'
+                exp_date: '202808'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/get-card-limits:
+    post:
+      tags:
+        - default
+      summary: getCardLimits Copy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000273996'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/get-card-list-by-owner:
+    post:
+      tags:
+        - default
+      summary: getCardListByOwner Copy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                customer_id: '313202320'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/validate-pin:
+    post:
+      tags:
+        - default
+      summary: validatePin Copy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000273996'
+                pin_value: '112233'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /transaction/p2p-credit:
+    post:
+      tags:
+        - default
+      summary: p2pCredit Copy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000293026'
+                amount: '5000'
+                currency: '840'
+                account_number: '700000182601'
+                sender_name: VICHKA
+                sender_address: '168'
+                sender_postal_code: '123456'
+                receiver_name: PHIILP PREPAID06
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+        - name: Access-Control-Allow-Origin
+          in: header
+          schema:
+            type: string
+          example: '*'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
