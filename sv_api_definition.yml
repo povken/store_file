@@ -14,7 +14,7 @@ paths:
     post:
       tags:
         - default
-      summary: p2pCredit2
+      summary: p2pCreditss
       requestBody:
         content:
           application/json:
