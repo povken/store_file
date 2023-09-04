@@ -5,11 +5,6 @@ info:
 servers:
   - url: https://petstore.swagger.io
   - url: https://mi-uat.phillipbank.com.kh
-components:
-  securitySchemes:
-    noauthAuth:
-      type: http
-      scheme: noauth
 paths:
   /v2/pet:
     post:
@@ -53,7 +48,7 @@ paths:
     post:
       tags:
         - default
-      summary: p2pCredit
+      summary: p2pCredit2
       requestBody:
         content:
           application/json:
@@ -68,24 +63,13 @@ paths:
                 sender_address: '168'
                 sender_postal_code: '123456'
                 receiver_name: PHIILP PREPAID06
-      security:
-        - noauthAuth: []
       parameters:
-        - name: Content-Type
+        - name: accept
           in: header
           schema:
             type: string
           example: application/json
-        - name: Correlation-Id
-          in: header
-          schema:
-            type: string
-        - name: App-Code
-          in: header
-          schema:
-            type: string
-          example: MB
-        - name: accept
+        - name: Content-Type
           in: header
           schema:
             type: string
