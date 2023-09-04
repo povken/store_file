@@ -4,6 +4,12 @@ info:
   version: 1.0.0
 servers:
   - url: https://petstore.swagger.io
+  - url: https://mi-uat.phillipbank.com.kh
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
 paths:
   /v2/pet:
     post:
@@ -34,6 +40,52 @@ paths:
             type: string
           example: application/json
         - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/transaction/p2p-credit:
+    post:
+      tags:
+        - default
+      summary: p2pCredit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000293026'
+                amount: '5000'
+                currency: '840'
+                account_number: '700000182601'
+                sender_name: VICHKA
+                sender_address: '168'
+                sender_postal_code: '123456'
+                receiver_name: PHIILP PREPAID06
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+        - name: accept
           in: header
           schema:
             type: string
