@@ -3,54 +3,13 @@ info:
   title: Test-SV-API2
   version: 1.0.0
 servers:
-  - url: https://petstore.swagger.io
   - url: https://apigw-uat.phillipbank.com.kh
 components:
   securitySchemes:
     oauth2Auth:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: https://apicp-uat.phillipbank.com.kh/oauth2/token
+      type: http
+      scheme: oauth2
 paths:
-  /v2/pet:
-    post:
-      tags:
-        - default
-      summary: https://petstore.swagger.io/v2/pet
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                id: 0
-                category:
-                  id: 0
-                  name: string
-                name: doggie
-                photoUrls:
-                  - string
-                tags:
-                  - id: 0
-                    name: string
-                status: available
-      parameters:
-        - name: accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
   /sv/v1/transaction/p2p-credit:
     post:
       tags:
