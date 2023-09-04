@@ -1,0 +1,915 @@
+openapi: 3.0.0
+info:
+  title: Test-SV-API
+  version: 1.0.0
+servers:
+  - url: https://mi-uat.phillipbank.com.kh
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    noauthAuth:
+      type: http
+      scheme: noauth
+paths:
+  /v1/sv/card-wallet/send-issuer-application:
+    post:
+      tags:
+        - default
+      summary: "1.\tRequest Debit/Prepaid Card - sendIssuerApplication Copy"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"agent_id\": \"60000106\",\r\n    \"customer\":
+                {\r\n        \"customer_number\": \"313202321\", //CIF
+                No.\r\n        \"customer_category\": \"CCTG6017\",\r\n       
+                \"customer_type\":\"New\", //New(New customer new cardType)
+                Old(Old customer new cardType)\r\n        \"contract\":
+                {\r\n            \"product_id\": \"60001144\", //Check in LOV
+                code document (Card Type Value sheet)\r\n            \"card\":
+                {\r\n                \"card_type\": \"6151\", //Check in LOV
+                code document\r\n                \"delivery_address\":
+                \"85510242428\", //Phone number\r\n                \"contact\":
+                {\r\n                    \"preferred_lang\":
+                \"LANGENG\",\r\n                    \"commun_method\":
+                \"CMNM0001\",\r\n                    \"commun_address\":
+                \"85510252829\"\r\n                }\r\n           
+                },\r\n            \"account\": {\r\n               
+                \"account_number\": \"81000018221\",\r\n               
+                \"currency\": \"840\", //ISO currency\r\n               
+                \"account_type\": \"ACTP6605\" //Check in LOV code
+                document\r\n            }\r\n        },\r\n        \"person\":
+                {\r\n            \"person_title\": \"PTTLMSTR\", //PTTLMSTR=Mr
+                PTTLMRSS=Mrs\r\n            \"surname\":
+                \"PHILLIP\",\r\n            \"first_name\":
+                \"PREPAID003\",\r\n            \"id_type\": \"IDTP0045\",
+                //NID=IDTP0045, Passsport=IDTP0001\r\n            \"id_number\":
+                \"313202321\" //Identity or passport number\r\n        }\r\n   
+                }\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/send-issuer-application-add-card:
+    post:
+      tags:
+        - default
+      summary: "1.\tAdd Debit/Prepaid Card - sendIssuerApplicationAddCard Copy"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n    \"agent_id\": \"60000106\",\n    \"customer\":
+                {\n        \"customer_number\": \"313202303\", //CIF
+                No.\n        \"customer_category\": \"CCTG6017\",\n       
+                \"contract\": {\n            \"product_id\": \"60001055\",
+                //Check in LOV code document (Card Type Value
+                sheet)\n            \"contract_number\":
+                \"00000000000000000000000000227611\",\n            \"card\":
+                {\n                \"card_type\": \"1006\", //Check in LOV code
+                document\n                \"delivery_address\": \"85510242428\",
+                //Phone number\n                \"cardholder_name\": \"PHILLIP
+                PREPAID08001\",\n                \"contact\":
+                {\n                    \"preferred_lang\":
+                \"LANGENG\",\n                    \"commun_method\":
+                \"CMNM0001\",\n                    \"commun_address\":
+                \"85510252829\"\n                }\n            },\n           
+                \"account\": {\n                \"account_number\":
+                \"81000018203\",\n                \"currency\": \"840\", //ISO
+                currency\n                \"account_type\": \"ACTP0110\" //Check
+                in LOV code document\n            }\n        }\n    }\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/activate-card:
+    post:
+      tags:
+        - default
+      summary: "2.\tActivate Card - activateCard Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000302231'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/generate-pin:
+    post:
+      tags:
+        - default
+      summary: "5.\tChange Card PIN - generatePin Copy"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"card_id\": \"100000273996\",\r\n   
+                \"pin_delivery_method\": \"WS\",\r\n    \"pin_value\":
+                \"112233\"\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/block-card:
+    post:
+      tags:
+        - default
+      summary: "7.\tBlock/Unblock - blockCard Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000297025'
+                hot_card_status: '2'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/change-card-status:
+    post:
+      tags:
+        - default
+      summary: "7.\tBlock/Unblock - changeCardStatus Copy"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"card_id\": \"100000297025\",\r\n   
+                \"hot_card_status\": \"0\"//0 = valid, 6 = lost, ...\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/transaction/p2p-transfer:
+    post:
+      tags:
+        - default
+      summary: "8.\tWallet Transfer from Wallet to Wallet - p2pTransfer Copy"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"source_card_id\": \"100000293029\",\r\n   
+                \"destination_card_number\": \"5349139572257702\",\r\n   
+                \"amount\": \"500\",\r\n    \"currency\": \"840\"\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/transaction/p2p-debit:
+    post:
+      tags:
+        - default
+      summary: "9.\tTransfer from Prepaid to CASA - p2pDebit Copy"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"card_id\": \"100000240457\",\r\n    \"amount\":
+                \"10\",\r\n    \"currency\": \"840\",\r\n    \"account_number\":
+                \"700000167748\",\r\n    \"sender_name\": \"VICHKA\",\r\n   
+                \"sender_address\": \"168\"\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/create-virtual-card:
+    post:
+      tags:
+        - default
+      summary: "10.\tCreate Virtual Card - createVirtualCard Copy"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"product_name\": \"PHILIPBANK1\",\r\n   
+                \"parameters\": [\r\n            {\r\n              \"name\":
+                \"application_type\",\r\n              \"value\":
+                \"1001\"\r\n            },\r\n            {\r\n             
+                \"name\": \"customer_number\",\r\n              \"value\":
+                \"313202301\"//CIF No.\r\n            },\r\n           
+                {\r\n              \"name\": \"product_id\",\r\n             
+                \"value\": \"60001120\"//Debit V=60001120 , PrePaid
+                V=60001145\r\n            },\r\n            {\r\n             
+                \"name\": \"card_type\",\r\n              \"value\":
+                \"1016\"//Debit V=1016 , PrePaid V=6151\r\n           
+                },\r\n            {\r\n              \"name\":
+                \"cardholder_name\",\r\n              \"value\": \"PHILLIP
+                Virtua15001\"\r\n            },\r\n           
+                {\r\n              \"name\":
+                \"delivery_address\",\r\n              \"value\":
+                \"85510242428\"\r\n            },\r\n           
+                {\r\n              \"name\":
+                \"commun_address\",\r\n              \"value\":
+                \"85510252829\"\r\n            },\r\n           
+                {\r\n              \"name\":
+                \"account_number\",\r\n              \"value\":
+                \"81000018201\"\r\n            },\r\n           
+                {\r\n              \"name\": \"currency\",\r\n             
+                \"value\": \"840\"\r\n            },\r\n           
+                {\r\n              \"name\": \"account_type\",\r\n             
+                \"value\": \"ACTP0110\"\r\n            },\r\n           
+                {\r\n              \"name\": \"surname\",\r\n             
+                \"value\": \"PHILLIP\"\r\n            },\r\n           
+                {\r\n              \"name\": \"firstName\",\r\n             
+                \"value\": \"Virtua15001\"\r\n            },\r\n           
+                {\r\n              \"name\": \"id_type\",\r\n             
+                \"value\": \"IDTP0045\"//NID=IDTP0045,
+                Passsport=IDTP0001\r\n            },\r\n           
+                {\r\n              \"name\": \"id_number\",\r\n             
+                \"value\": \"313202301\"//Identity or Passport
+                number\r\n            }\r\n    ]\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/add-virtual-card:
+    post:
+      tags:
+        - default
+      summary: "10.\tAdd Virtual Card - addVirtualCard Copy"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n    \"product_name\": \"PHILIPBANK1\",\n    \"parameters\":
+                [\n        {\n            \"name\":
+                \"application_type\",\n            \"value\": \"1003\"\n       
+                },\n        {\n            \"name\":
+                \"customer_number\",\n            \"value\": \"303202379\" //CIF
+                No.\n        },\n        {\n            \"name\":
+                \"product_id\",\n            \"value\": \"60001120\" //Debit
+                V=60001120 , PrePaid V=60001145\n        },\n       
+                {\n            \"name\": \"contract_number\",\n           
+                \"value\": \"00000000000000000000000000224144\"\n       
+                },\n        {\n            \"name\": \"card_type\",\n           
+                \"value\": \"1016\" //Debit V=1016 , PrePaid V=6151\n       
+                },\n        {\n            \"name\":
+                \"cardholder_name\",\n            \"value\": \"PHILLIP
+                Virtua09001\"\n        },\n        {\n            \"name\":
+                \"delivery_address\",\n            \"value\":
+                \"85510242428\"\n        },\n        {\n            \"name\":
+                \"commun_address\",\n            \"value\":
+                \"85510252829\"\n        },\n        {\n            \"name\":
+                \"account_number\",\n            \"value\":
+                \"80000018279\"\n        }\n    ]\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/change-card-limit:
+    post:
+      tags:
+        - default
+      summary: "11.\tChange Card Limit - changeCardLimit Copy"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"card_id\": \"100000297025\",\r\n    \"name\":
+                \"LMTC6222\",//PHILLIP max amount per cash withdrawal on
+                ATM/POS\r\n    \"value\": \"1000\"\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/get-geo-restrictions:
+    post:
+      tags:
+        - default
+      summary: "12.\tEnable/Disable Card Service - getGeoRestrictions Copy"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '"{\r\n    \"card_id\": \"100000273996\"\r\n}"'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/set-geo-restrictions:
+    post:
+      tags:
+        - default
+      summary: "12.\tEnable/Disable Card Service - setGeoRestrictions Copy"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"card_id\": \"100000273996\",\r\n    \"restriction\":
+                [\r\n        {\r\n            \"region_id\":
+                \"5\",//<!--1=RUSSIAN 2=EUROPE 5=AMERICA 7=ASIA
+                999=OTHERS-->\r\n            \"transaction_group_id\":
+                \"999\",//<!--1 Purchase 2 CWD 999 Other-->\r\n           
+                \"status\": \"DISABLED\",// <!--ENABLED or
+                DISABLED-->\r\n            \"start_date\":
+                \"2021-05-01T00:00:00\",\r\n            \"end_date\":
+                \"2021-05-09T23:59:59\"\r\n        }\r\n    ]\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/init-cardless-cashout:
+    post:
+      tags:
+        - default
+      summary: "13.\tE_Cash - initCardlessCashout Copy"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"customer_id\": \"303202385\",//CIF No.\r\n   
+                \"amount\": \"200\",\r\n    \"currency\": \"840\",//ISO
+                currency\r\n    \"account_type\":
+                \"ACCOUNT_TYPE_SAVING\",//Check in LOV code document\r\n   
+                \"account_number\": \"800000182621\"\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/transaction/get-transaction:
+    post:
+      tags:
+        - default
+      summary: "14.\tView Transaction History - getTransactions Copy"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000296691'
+                exp_date: '202806'
+                start: '2021-01-01'
+                end: '2023-06-26'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/generate-cvc2:
+    post:
+      tags:
+        - default
+      summary: "16.\tGet CVV - generateCVC2 Copy"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '"{\n    \"card_id\": \"100000297025\"\n}"'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/binding-card-to-account:
+    post:
+      tags:
+        - default
+      summary: "17.\tBind Card/ Link Account - bindingCardToAccount Copy"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"card_id\": \"100000297025\",\r\n   
+                \"account_number\": \"80000018285\",\r\n    \"account_type\":
+                \"ACCOUNT_TYPE_SAVING\"//Check in LOV code document\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/get-card-data:
+    post:
+      tags:
+        - default
+      summary: getCardData Copy
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"card_id\": \"100000302231\",\r\n    \"exp_date\":
+                \"202808\"//card expired date\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/get-card-limits:
+    post:
+      tags:
+        - default
+      summary: getCardLimits Copy
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '"{\r\n    \"card_id\": \"100000273996\"\r\n}"'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/get-card-list-by-owner:
+    post:
+      tags:
+        - default
+      summary: getCardListByOwner Copy
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '"{\r\n    \"customer_id\": \"313202320\"//CIF No.\r\n}"'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/card-wallet/validate-pin:
+    post:
+      tags:
+        - default
+      summary: validatePin Copy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000273996'
+                pin_value: '112233'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/sv/transaction/p2p-credit:
+    post:
+      tags:
+        - default
+      summary: p2pCredit Copy
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"card_id\": \"100000293026\",\r\n    \"amount\":
+                \"5000\",\r\n    \"currency\": \"840\",\r\n   
+                \"account_number\": \"700000182601\",\r\n    \"sender_name\":
+                \"VICHKA\",\r\n    \"sender_address\": \"168\",\r\n   
+                \"sender_postal_code\": \"123456\",\r\n    \"receiver_name\":
+                \"PHIILP PREPAID06\"\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
