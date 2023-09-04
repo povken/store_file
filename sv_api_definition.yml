@@ -4,7 +4,12 @@ info:
   version: 1.0.0
 servers:
   - url: https://petstore.swagger.io
-  - url: https://mi-sit.phillipbank.com.kh
+  - url: https://apigw-uat.phillipbank.com.kh
+components:
+  securitySchemes:
+    oauth2Auth:
+      type: http
+      scheme: oauth2
 paths:
   /v2/pet:
     post:
@@ -44,7 +49,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /v1/sv/transaction/p2p-credit:
+  /sv/v1/transaction/p2p-credit:
     post:
       tags:
         - default
@@ -63,6 +68,8 @@ paths:
                 sender_address: '168'
                 sender_postal_code: '123456'
                 receiver_name: PHIILP PREPAID06
+      security:
+        - oauth2Auth: []
       parameters:
         - name: accept
           in: header
