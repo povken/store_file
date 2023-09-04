@@ -6,17 +6,15 @@ servers:
   - url: https://apigw-uat.phillipbank.com.kh
 components:
   securitySchemes:
-    oauth2Auth:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: https://apicp-uat.phillipbank.com.kh/oauth2/token
+    bearerAuth:
+      type: http
+      scheme: bearer
 paths:
   /sv/v1/transaction/p2p-credit:
     post:
       tags:
         - default
-      summary: p2pCreditss
+      summary: p2pCredit2
       requestBody:
         content:
           application/json:
@@ -32,7 +30,7 @@ paths:
                 sender_postal_code: '123456'
                 receiver_name: PHIILP PREPAID06
       security:
-        - oauth2Auth: []
+        - bearerAuth: []
       parameters:
         - name: accept
           in: header
