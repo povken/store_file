@@ -880,6 +880,11 @@ paths:
           schema:
             type: string
           example: MB
+        - name: Access-Control-Allow-Origin
+          in: header
+          schema:
+            type: string
+          example: '*'
       responses:
         '200':
           description: Successful response
