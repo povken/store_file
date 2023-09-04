@@ -3,18 +3,11 @@ info:
   title: Test-SV-API
   version: 1.0.0
 servers:
-  - url: mi-uat.phillipbank.com.kh
-    description: Main server
-    variables:
-      scheme:
-        enum:
-          - https
-          - http
-        default: https
+  - url: https://mi-uat.phillipbank.com.kh
 components:
   securitySchemes:
     noauthAuth:
-      type: http
+      type: https
       scheme: noauth
 paths:
   /v1/sv/card-wallet/send-issuer-application:
