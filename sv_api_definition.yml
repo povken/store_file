@@ -1,22 +1,39 @@
 openapi: 3.0.0
 info:
-  title: Hello World API
+  title: Test-SV-API2
   version: 1.0.0
 servers:
-  - url: http://api.example.com
+  - url: https://petstore.swagger.io
 paths:
-  /hello:
-    get:
-      summary: Get a simple greeting
+  /v2/pet:
+    post:
+      tags:
+        - default
+      summary: https://petstore.swagger.io/v2/pet
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n  \"id\": 0,\r\n  \"category\": {\r\n    \"id\": 0,\r\n   
+                \"name\": \"string\"\r\n  },\r\n  \"name\": \"doggie\",\r\n 
+                \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\":
+                [\r\n    {\r\n      \"id\": 0,\r\n      \"name\":
+                \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+      parameters:
+        - name: accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
           content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                example:
-                  message: Hello, World!
+            application/json: {}
