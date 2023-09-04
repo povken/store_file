@@ -4,11 +4,6 @@ info:
   version: 1.0.0
 servers:
   - url: https://mi-uat.phillipbank.com.kh
-components:
-  securitySchemes:
-    noauthAuth:
-      type: http
-      scheme: noauth
 paths:
   /v1/sv/card-wallet/send-issuer-application:
     post:
