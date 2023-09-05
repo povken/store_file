@@ -1,7 +1,17 @@
 openapi: 3.0.0
 info:
-  title: Smart Vista Swagger Portal
+  title: Smart Vista Project
   version: 1.0.0
+  description: |
+    Smart Vista Project API
+  contact:
+    name: Your Name
+    email: your.email@example.com
+    url: https://www.example.com/contact
+  license:
+    name: Your License
+    url: https://www.example.com/license
+  termsOfService: https://www.yourcompanywebsite.com
 servers:
   - url: https://apigw-uat.phillipbank.com.kh
 components:
