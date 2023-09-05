@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Test-SV-API
+  title: Smart Vista Swagger Portal
   version: 1.0.0
 servers:
   - url: https://apigw-uat.phillipbank.com.kh
