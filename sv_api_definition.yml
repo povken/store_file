@@ -5,13 +5,9 @@ info:
   description: |
     Smart Vista Project API
   contact:
-    name: Your Name
-    email: your.email@example.com
-    url: https://www.example.com/contact
-  license:
-    name: Your License
-    url: https://www.example.com/license
-  termsOfService: https://www.yourcompanywebsite.com
+    name: PhillipBank Team
+    email: digital@phillipbank.com.kh
+    url: https://www.phillipbank.com.kh
 servers:
   - url: https://apigw-uat.phillipbank.com.kh
 components:
