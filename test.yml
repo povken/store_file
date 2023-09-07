@@ -1,0 +1,48 @@
+openapi: 3.0.0
+info:
+  title: Test-Postman-to-OpenAPI-import-to-APIM
+  version: 1.0.0
+servers:
+  - url: https://apigw-uat.phillipbank.com.kh
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+paths:
+  /sv/v1/card-wallet/get-card-data:
+    post:
+      tags:
+        - default
+      summary: getCardData Copy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000302231'
+                exp_date: '202808'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
