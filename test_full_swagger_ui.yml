@@ -1,0 +1,196 @@
+openapi: 3.0.0
+info:
+  title: Test-Full-Swagger-API
+  version: 1.0.0
+servers:
+  - url: https://apigw-uat.phillipbank.com.kh
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+paths:
+  /sv/v1/card-wallet/send-issuer-application:
+    post:
+      tags:
+        - default
+      summary: sendIssuerApplication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                agent_id: '60000106'
+                customer:
+                  customer_command: CMMDCREX
+                  customer_number: '313202231'
+                  customer_category: CCTG6017
+                  contract:
+                    contract_command: CMMDCREX
+                    product_id: '60001144'
+                    card:
+                      card_command: CMMDCREX
+                      card_type: '6151'
+                      card_holder:
+                        card_holder_command: CMMDCREX
+                        contact:
+                          contact_command: CMMDCREX
+                          preferred_lang: LANGENG
+                          commun_method: CMNM0001
+                          commun_address: '85510252829'
+                        notification:
+                          notification_command: CMMDCREX
+                          delivery_address: '85510242428'
+                    account:
+                      account_command: CMMDCREX
+                      account_number: '81000018531'
+                      currency: '840'
+                      account_type: ACTP6605
+                  person:
+                    person_command: CMMDCREX
+                    person_title: PTTLMSTR
+                    surname: PHILLIP
+                    first_name: PREPAID003
+                    identity_card:
+                      id_command: CMMDCREX
+                      id_type: IDTP0045
+                      id_number: '313202231'
+                  address:
+                    address_command: CMMDCREX
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Wed, 13 Sep 2023 07:18:11 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=ISO-8859-1
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            activityid:
+              schema:
+                type: string
+                example: cfae59b0-d813-4f72-bfc6-9e36a9ef4b63
+            Access-Control-Expose-Headers:
+              schema:
+                type: string
+                example: ''
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+                example: POST
+            X-APIGate-Request-Id:
+              schema:
+                type: string
+                example: 102ce8f3e54f4d05b5a1b3ac4eeebbae
+            X-ORACLE-DMS-ECID:
+              schema:
+                type: string
+                example: ab584d7e-fa17-4fc8-a866-38e4bb6c9b3f-000a32ae
+            X-ORACLE-DMS-RID:
+              schema:
+                type: integer
+                example: '0'
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+                example: '*,Authorization'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                code: SUC-001
+                message: SUCCESS
+                correlation_id: fc0ae02f-262a-49a2-8d4e-f9eca390fd44
+                data:
+                  application_id: string
+                  application_type: string
+                  application_flow_id: string
+                  application_status: string
+                  appl_prioritized: string
+                  operator_id: string
+                  institution_id: string
+                  agent_id: string
+                  customer_type: string
+                  customer_command: string
+                  customer_number: string
+                  customer_category: string
+                  customer_relation: string
+                  contract_command: string
+                  contract_type: string
+                  product_id: string
+                  contract_number: string
+                  card_command: string
+                  card_id: string
+                  card_number: string
+                  card_type: string
+                  category: string
+                  expiration_date: string
+                  card_holder_command: string
+                  cardholder_number: string
+                  cardholder_name: string
+                  account_command: string
+                  account_number: string
+                  currency: string
+                  account_type: string
+                  account_status: string
+                  account_link_flag: string
+                  person_command: string
+                  person_title: string
+                  surname: string
+                  first_name: string
+                  identity_card_command: string
+                  id_type: string
+                  id_series: string
+                  id_number: string
+                  contact_command: string
+                  contact_type: string
+                  preferred_lang: string
+                  commun_method: string
+                  commun_address: string
+                  start_date: ''
+                  address_command: string
+                  address_type: string
+                  country: string
+                  region: string
+                  city: string
+                  street: string
+                  house: string
