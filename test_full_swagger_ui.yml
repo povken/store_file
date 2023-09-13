@@ -24,7 +24,7 @@ paths:
                 agent_id: '60000106'
                 customer:
                   customer_command: CMMDCREX
-                  customer_number: '313202231'
+                  customer_number: '313202232'
                   customer_category: CCTG6017
                   contract:
                     contract_command: CMMDCREX
@@ -44,7 +44,7 @@ paths:
                           delivery_address: '85510242428'
                     account:
                       account_command: CMMDCREX
-                      account_number: '81000018531'
+                      account_number: '81000018532'
                       currency: '840'
                       account_type: ACTP6605
                   person:
@@ -55,7 +55,7 @@ paths:
                     identity_card:
                       id_command: CMMDCREX
                       id_type: IDTP0045
-                      id_number: '313202231'
+                      id_number: '313202232'
                   address:
                     address_command: CMMDCREX
       security:
@@ -80,58 +80,14 @@ paths:
         '200':
           description: OK
           headers:
-            Date:
-              schema:
-                type: string
-                example: Wed, 13 Sep 2023 07:18:11 GMT
             Content-Type:
               schema:
                 type: string
                 example: application/json; charset=ISO-8859-1
-            Transfer-Encoding:
-              schema:
-                type: string
-                example: chunked
-            Connection:
-              schema:
-                type: string
-                example: keep-alive
-            activityid:
-              schema:
-                type: string
-                example: cfae59b0-d813-4f72-bfc6-9e36a9ef4b63
-            Access-Control-Expose-Headers:
-              schema:
-                type: string
-                example: ''
-            Strict-Transport-Security:
-              schema:
-                type: string
-                example: max-age=15724800; includeSubDomains
-            Access-Control-Allow-Origin:
-              schema:
-                type: string
-                example: '*'
             Access-Control-Allow-Methods:
               schema:
                 type: string
                 example: POST
-            X-APIGate-Request-Id:
-              schema:
-                type: string
-                example: 102ce8f3e54f4d05b5a1b3ac4eeebbae
-            X-ORACLE-DMS-ECID:
-              schema:
-                type: string
-                example: ab584d7e-fa17-4fc8-a866-38e4bb6c9b3f-000a32ae
-            X-ORACLE-DMS-RID:
-              schema:
-                type: integer
-                example: '0'
-            Access-Control-Allow-Headers:
-              schema:
-                type: string
-                example: '*,Authorization'
           content:
             application/json:
               schema:
@@ -139,7 +95,7 @@ paths:
               example:
                 code: SUC-001
                 message: SUCCESS
-                correlation_id: fc0ae02f-262a-49a2-8d4e-f9eca390fd44
+                correlation_id: 4b1a1cdf-076a-45de-8b45-5a7fba0932f2
                 data:
                   application_id: string
                   application_type: string
@@ -186,7 +142,7 @@ paths:
                   preferred_lang: string
                   commun_method: string
                   commun_address: string
-                  start_date: ''
+                  start_date: string
                   address_command: string
                   address_type: string
                   country: string
@@ -194,3 +150,1057 @@ paths:
                   city: string
                   street: string
                   house: string
+  /sv/v1/card-wallet/activate-card:
+    post:
+      tags:
+        - default
+      summary: activateCard
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000308132'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=ISO-8859-1
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+                example: POST
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                code: SUC-001
+                message: Success
+                correlation_id: 02003156-eb17-43a8-89c2-2c560485cd13
+                data:
+                  response_code: string
+                  processing_code: string
+                  system_trace_audit_number: string
+                  local_transaction_date: string
+                  authorization_id_response: string
+                  utrnno: string
+  /sv/v1/card-wallet/generate-pin:
+    post:
+      tags:
+        - default
+      summary: generatePin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000308132'
+                pin_delivery_method: WS
+                pin_value: '112233'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=ISO-8859-1
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+                example: POST
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                code: SUC-001
+                message: Success
+                correlation_id: 136f0edc-cd53-45ec-81bc-75e8313821de
+                data:
+                  response_code: string
+                  processing_code: string
+                  system_trace_auditNumber: string
+                  local_transaction_date: string
+                  authorization_id_response: string
+                  utrnno: string
+                  pinValue: string
+  /sv/v1/card-wallet/block-card:
+    post:
+      tags:
+        - default
+      summary: blockCard
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000297025'
+                hot_card_status: '2'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /sv/v1/card-wallet/change-card-status:
+    post:
+      tags:
+        - default
+      summary: changeCardStatus
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"card_id\": \"100000297025\",\r\n   
+                \"hot_card_status\": \"0\"//0 = valid, 6 = lost, ...\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /sv/v1/transaction/p2p-transfer:
+    post:
+      tags:
+        - default
+      summary: p2pTransfer
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"source_card_id\": \"100000293029\",\r\n   
+                \"destination_card_number\": \"5349139572257702\",\r\n   
+                \"amount\": \"500\",\r\n    \"currency\": \"840\"\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /sv/v1/transaction/p2p-debit:
+    post:
+      tags:
+        - default
+      summary: p2pDebit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000308132'
+                amount: '1000'
+                currency: '840'
+                account_number: '81000018532'
+                sender_name: VICHKA
+                sender_address: '168'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=ISO-8859-1
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+                example: POST
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                code: SUC-001
+                message: Success
+                correlation_id: a7a3c96b-3bed-4026-ab7a-e3ce6a790d79
+                data:
+                  response_code: string
+                  processing_code: string
+                  system_trace_audit_number: string
+                  local_transaction_date: string
+                  rrn: string
+                  authorization_id_response: string
+                  account_currency_amount: string
+                  utrnno: string
+  /sv/v1/card-wallet/change-card-limit:
+    post:
+      tags:
+        - default
+      summary: changeCardLimit
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"card_id\": \"100000297025\",\r\n    \"name\":
+                \"LMTC6222\",//PHILLIP max amount per cash withdrawal on
+                ATM/POS\r\n    \"value\": \"1000\"\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /sv/v1/card-wallet/get-geo-restrictions:
+    post:
+      tags:
+        - default
+      summary: getGeoRestrictions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000308132'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=ISO-8859-1
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+                example: POST
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                code: SUC-001
+                message: Success
+                correlation_id: 9577f884-e688-4cc5-b8b2-8885e6f30896
+                data:
+                  - id: '1'
+                    description: RUSSIAN FEDERATION
+                  - id: '2'
+                    description: EUROPEAN UNION
+                  - id: '3'
+                    description: EUROPE
+                  - id: '4'
+                    description: NORTH AMERICA
+                  - id: '5'
+                    description: CENTRAL AMERICA
+                  - id: '6'
+                    description: SOUTH AMERICA
+                  - id: '7'
+                    description: ASIA
+                  - id: '8'
+                    description: MIDDLE EAST
+                  - id: '9'
+                    description: OCEANIA
+                  - id: '10'
+                    description: AFRICA
+                  - id: '11'
+                    description: THE CARIBBEAN
+                  - id: '999'
+                    description: OTHERS
+  /sv/v1/card-wallet/set-geo-restrictions:
+    post:
+      tags:
+        - default
+      summary: setGeoRestrictions
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"card_id\": \"100000273996\",\r\n    \"restriction\":
+                [\r\n        {\r\n            \"region_id\":
+                \"5\",//<!--1=RUSSIAN 2=EUROPE 5=AMERICA 7=ASIA
+                999=OTHERS-->\r\n            \"transaction_group_id\":
+                \"999\",//<!--1 Purchase 2 CWD 999 Other-->\r\n           
+                \"status\": \"DISABLED\",// <!--ENABLED or
+                DISABLED-->\r\n            \"start_date\":
+                \"2021-05-01T00:00:00\",\r\n            \"end_date\":
+                \"2021-05-09T23:59:59\"\r\n        }\r\n    ]\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=ISO-8859-1
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+                example: POST
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                code: SUC-001
+                message: Success
+                correlation_id: 22f1e682-1529-48df-81b6-ad304e42d3d2
+                data:
+                  response_code: string
+  /sv/v1/card-wallet/init-cardless-cashout:
+    post:
+      tags:
+        - default
+      summary: initCardlessCashout
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"customer_id\": \"303202385\",//CIF No.\r\n   
+                \"amount\": \"200\",\r\n    \"currency\": \"840\",//ISO
+                currency\r\n    \"account_type\":
+                \"ACCOUNT_TYPE_SAVING\",//Check in LOV code document\r\n   
+                \"account_number\": \"800000182621\"\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /sv/v1/transaction/get-transaction:
+    post:
+      tags:
+        - default
+      summary: getTransactions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000296691'
+                exp_date: '202806'
+                start: '2023-06-20'
+                end: '2023-06-26'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=ISO-8859-1
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+                example: POST
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                code: SUC-001
+                message: Success
+                correlation_id: e7ef56b4-fff9-4fab-8dc2-0ef357eb6f55
+                data:
+                  - authorization_date: string
+                    transaction_type: string
+                    operation_direction: string
+                    amount: string
+                    currency: string
+                    amount_in_account_currency: string
+                    utrnno: string
+                    transaction_description: string
+                    fee_direction: string
+                    acquire_fee_amount: string
+                    fe_issuer_fee_amount: string
+                    mcc: string
+                    merchant_country: string
+                    merchant_city: string
+                    merchant_name: string
+                    merchant_id: string
+                    terminal_address: string
+                    pos_data_code: string
+                    authorization_id_response: string
+                    reversal: string
+                    reversal_allowed: string
+                    request_amount: string
+                    terminal_id: string
+                    internal_response_code: string
+                    internal_response_code_description: string
+                    system_trace_audit_number: string
+                    issuer_institution_id: string
+                    acquirer_institution_id: string
+                    operation_type: string
+                    account_number: string
+                  - authorization_date: string
+                    transaction_type: string
+                    operation_direction: string
+                    amount: string
+                    currency: string
+                    amount_in_account_currency: string
+                    utrnno: string
+                    transaction_description: string
+                    fee_direction: string
+                    acquire_fee_amount: string
+                    fe_issuer_fee_amount: string
+                    mcc: string
+                    merchant_country: string
+                    merchant_city: string
+                    merchant_name: string
+                    merchant_id: string
+                    terminal_address: string
+                    pos_data_code: string
+                    authorization_id_response: string
+                    reversal: string
+                    reversal_allowed: string
+                    request_amount: string
+                    terminal_id: string
+                    internal_response_code: string
+                    internal_response_code_description: string
+                    system_trace_audit_number: string
+                    issuer_institution_id: string
+                    acquirer_institution_id: string
+                    operation_type: string
+                    account_number: string
+  /sv/v1/card-wallet/generate-cvc2:
+    post:
+      tags:
+        - default
+      summary: generateCVC2
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '"{\n    \"card_id\": \"100000308132\"\n}"'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /sv/v1/card-wallet/binding-card-to-account:
+    post:
+      tags:
+        - default
+      summary: bindingCardToAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000297025'
+                account_number: '80000018285'
+                account_type: ACCOUNT_TYPE_SAVING
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=ISO-8859-1
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+                example: POST
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                code: SUC-001
+                message: Success
+                correlation_id: 8cb21763-c057-4630-89d7-73ff84ac1143
+                data:
+                  response_code: string
+                  processing_code: string
+                  system_trace_audit_number: string
+                  local_transaction_date: string
+                  authorization_id_response: string
+                  utrnno: string
+  /sv/v1/card-wallet/get-card-data:
+    post:
+      tags:
+        - default
+      summary: getCardData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000308132'
+                exp_date: '202808'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=ISO-8859-1
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+                example: POST
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                code: SUC-001
+                message: Success
+                correlation_id: 3b27919c-b521-4ade-a671-6e70835d18ff
+                data:
+                  card_number: string
+                  expiry_date: string
+                  card_id: string
+                  hot_card_status: string
+                  card_type_name: string
+                  embossed_name: string
+                  customer_id: string
+                  person_id: string
+                  pin_denial_counter: string
+                  plastic_number: string
+                  hot_card_status_description: string
+                  card_is_primary: string
+                  card_bind_to_customer: string
+                  customer_is_cardholder: string
+                  card_contract_id: string
+                  last_wrong_pin_date: string
+                  card_creation_date: string
+                  card_blocking_date: string
+                  account_data:
+                    number: string
+                    account_type: string
+                    currency: string
+                    currency_alpha_code: string
+                    balance: string
+                    credit_limit: string
+                    customer_id: string
+                    default_account: string
+  /sv/v1/card-wallet/get-card-limits:
+    post:
+      tags:
+        - default
+      summary: getCardLimits
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '"{\r\n    \"card_id\": \"100000308132\"\r\n}"'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=ISO-8859-1
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+                example: POST
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                code: SUC-001
+                message: Success
+                correlation_id: 68a9cd77-bdac-4a6b-8919-a24fff06c2ad
+                data:
+                  - name: LMTC6256
+                    type: '1'
+                    value: '500000'
+                    cycle_type: '0'
+                    cycle_length: '1'
+                    currency: '840'
+                    current_value: '0'
+                    limit_exceptions: null
+                  - name: LMTC6199
+                    type: '1'
+                    value: '500000'
+                    cycle_type: '0'
+                    cycle_length: '1'
+                    currency: '840'
+                    current_value: '0'
+                    limit_exceptions: null
+                  - name: LMTC6227
+                    type: '2'
+                    value: '20'
+                    cycle_type: '0'
+                    cycle_length: '1'
+                    currency: null
+                    current_value: '0'
+                    limit_exceptions: null
+                  - name: LMTC6223
+                    type: '1'
+                    value: '500000'
+                    cycle_type: '0'
+                    cycle_length: '999'
+                    currency: '840'
+                    current_value: '0'
+                    limit_exceptions: null
+                  - name: LMTC6226
+                    type: '1'
+                    value: '1000000'
+                    cycle_type: '0'
+                    cycle_length: '1'
+                    currency: '840'
+                    current_value: '0'
+                    limit_exceptions: null
+                  - name: LMTC6222
+                    type: '1'
+                    value: '500000'
+                    cycle_type: '0'
+                    cycle_length: '999'
+                    currency: '840'
+                    current_value: '0'
+                    limit_exceptions: null
+  /sv/v1/card-wallet/get-card-list-by-owner:
+    post:
+      tags:
+        - default
+      summary: getCardListByOwner
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                customer_id: '313202232'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=ISO-8859-1
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+                example: POST
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                code: SUC-001
+                message: Success
+                correlation_id: fd3b1ff0-9c11-444f-9bd1-3640be79577c
+                data:
+                  - card_number: string
+                    expiry_date: string
+                    card_id: string
+                    hot_card_status: string
+                    card_type_name: string
+                    embossed_name: string
+                    customer_id: string
+                    customer_name: string
+                    person_id: string
+                    pin_denial_counter: string
+                    plastic_number: string
+                    hot_card_status_description: string
+                    card_is_primary: string
+                    card_bind_to_customer: string
+                    customer_is_cardholder: string
+                    card_contract_id: string
+                    card_creation_date: string
+                    card_blocking_date: string
+  /sv/v1/card-wallet/validate-pin:
+    post:
+      tags:
+        - default
+      summary: validatePin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                card_id: '100000308132'
+                pin_value: '112233'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /sv/v1/transaction/p2p-credit:
+    post:
+      tags:
+        - default
+      summary: p2pCredit
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"card_id\": \"100000308132\",\r\n    \"amount\":
+                \"5000\",\r\n    \"currency\": \"840\",\r\n   
+                \"account_number\": \"81000018532\",\r\n    \"sender_name\":
+                \"VICHKA\",\r\n    \"sender_address\": \"168\",\r\n   
+                \"sender_postal_code\": \"123456\",\r\n    \"receiver_name\":
+                \"PHIILP PREPAID06\"\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Correlation-Id
+          in: header
+          schema:
+            type: string
+          example: '{{$randomUUID}}'
+        - name: App-Code
+          in: header
+          schema:
+            type: string
+          example: MB
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=ISO-8859-1
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+                example: POST
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                code: SUC-001
+                message: Success
+                correlation_id: 292cb906-94ac-4810-ae75-8ec1e6539517
+                data:
+                  response_code: string
+                  processing_code: string
+                  system_trace_audit_number: string
+                  local_transaction_date: string
+                  rrn: string
+                  authorization_id_response: string
+                  account_currency_amount: string
+                  utrnno: string
